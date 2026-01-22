@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc mừng sinh nhật Ánh Ngọc</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow: hidden; background: #000; }
+        .screen { min-height: 100vh; display: none; position: relative; overflow: hidden; width: 100%; height: 100vh; }
+        .screen.active { display: flex; }
+
+        /* --- SCREEN 1 --- */
+        #screen1 { background: linear-gradient(135deg, #ffc3f0 0%, #e0c3fc 100%); justify-content: center; align-items: center; }
+        .greeting-box { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(10px); border-radius: 30px; padding: 60px 40px; text-align: center; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); border: 2px solid rgba(255, 255, 255, 0.5); max-width: 500px; animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+        @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        .greeting-box h1 { font-size: 2.5rem; color: #ff6b9d; margin-bottom: 20px; font-weight: bold; }
+        .greeting-box p { font-size: 1.3rem; color: #c44569; margin: 15px 0; opacity: 0; animation: fadeInUp 1s forwards; }
+        .greeting-box p:nth-child(2) { animation-delay: 0.3s; }
+        .greeting-box p:nth-child(3) { animation-delay: 0.6s; }
+        .btn-cute { background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%); color: white; border: none; padding: 15px 40px; font-size: 1.2rem; border-radius: 50px; cursor: pointer; margin-top: 30px; box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4); transition: all 0.3s; }
+        .btn-cute:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(255, 107, 157, 0.6); }
+        .floating-icon { position: absolute; animation: float 3s ease-in-out infinite; font-size: 2rem; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- SCREEN 2 & 3 (Cake) --- */
+        #screen2 { background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%); justify-content: center; align-items: center; flex-direction: column; }
+        .cake-container { position: relative; animation: bounce 2s ease-in-out infinite; margin-top: 50px; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        .cake { width: 350px; height: 280px; background: linear-gradient(180deg, #ffe5f4 0%, #ffc4e8 50%, #ff9ede 100%); border-radius: 15px; position: relative; box-shadow: 0 20px 60px rgba(255, 105, 180, 0.4); }
+        .cake::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 15px; background: linear-gradient(90deg, #ff69b4 0%, #ff1493 25%, #ff69b4 50%, #ff1493 75%, #ff69b4 100%); border-radius: 0 0 15px 15px; }
+        .cake-layer { width: 100%; height: 70px; background: linear-gradient(180deg, #fff5e6 0%, #ffe4b5 50%, #ffd700 100%); border-radius: 10px; position: absolute; top: -40px; box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3); border: 3px solid #ffb6c1; }
+        .cake-layer::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 12px; background: linear-gradient(90deg, #ff1493 0%, #ff69b4 25%, #ff1493 50%, #ff69b4 75%, #ff1493 100%); border-radius: 0 0 10px 10px; }
+        .cake-decoration { position: absolute; width: 25px; height: 25px; background: radial-gradient(circle, #ff1493 0%, #ff69b4 70%); border-radius: 50%; box-shadow: 0 3px 8px rgba(255, 20, 147, 0.5); }
+        .cake-decoration:nth-child(1) { top: 30px; left: 30px; } .cake-decoration:nth-child(2) { top: 30px; right: 30px; }
+        .cake-decoration:nth-child(3) { top: 100px; left: 50px; } .cake-decoration:nth-child(4) { top: 100px; right: 50px; }
+        .cake-decoration:nth-child(5) { bottom: 40px; left: 70px; } .cake-decoration:nth-child(6) { bottom: 40px; right: 70px; }
+        .cake-decoration:nth-child(7) { top: 160px; left: 100px; } .cake-decoration:nth-child(8) { top: 160px; right: 100px; }
+        .cake-frosting { position: absolute; width: 100%; height: 100%; overflow: hidden; border-radius: 15px; }
+        .frosting-drip { position: absolute; top: 0; width: 40px; height: 50px; background: linear-gradient(180deg, #fff 0%, #ffe5f4 100%); border-radius: 0 0 20px 20px; opacity: 0.9; }
+        .frosting-drip:nth-child(1) { left: 20px; height: 45px; } .frosting-drip:nth-child(2) { left: 80px; height: 55px; }
+        .frosting-drip:nth-child(3) { left: 140px; height: 40px; } .frosting-drip:nth-child(4) { left: 200px; height: 60px; }
+        .frosting-drip:nth-child(5) { left: 260px; height: 48px; } .frosting-drip:nth-child(6) { left: 310px; height: 52px; }
+        .cake-cream-top { position: absolute; top: -5px; left: 0; right: 0; height: 20px; background: linear-gradient(180deg, #ffffff 0%, #ffe5f4 100%); border-radius: 50% 50% 0 0 / 100% 100% 0 0; box-shadow: 0 -5px 15px rgba(255, 255, 255, 0.8); }
+        .cake-base-plate { position: absolute; bottom: -20px; left: -25px; right: -25px; height: 20px; background: linear-gradient(180deg, #daa520 0%, #b8860b 100%); border-radius: 50%; box-shadow: 0 5px 15px rgba(184, 134, 11, 0.5); }
+        .candle-holder { position: absolute; top: -80px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; }
+        .candle { width: 15px; height: 60px; background: linear-gradient(135deg, #ff9ff3 0%, #c44569 100%); border-radius: 5px 5px 0 0; position: relative; cursor: pointer; }
+        .candle-wick { width: 3px; height: 10px; background: #333; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); }
+        .flame { display: none; position: absolute; top: -30px; left: 50%; transform: translateX(-50%); width: 20px; height: 30px; background: radial-gradient(circle, #ffeb3b 0%, #ff9800 50%, transparent 70%); border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; animation: flicker 0.2s ease-in-out infinite; }
+        .flame.active { display: block; }
+        @keyframes flicker { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.1, 0.9); } }
+        .smoke { position: absolute; width: 5px; height: 20px; background: rgba(200, 200, 200, 0.5); border-radius: 50%; animation: smokeRise 1s ease-out forwards; display: none; }
+        @keyframes smokeRise { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-50px); } }
+        .strawberry { position: absolute; width: 20px; height: 22px; background: linear-gradient(135deg, #ff3366 0%, #cc0033 100%); clip-path: polygon(50% 0%, 100% 40%, 90% 100%, 10% 100%, 0% 40%); box-shadow: 0 2px 5px rgba(204, 0, 51, 0.5); }
+        .strawberry::before { content: ''; position: absolute; top: -5px; left: 50%; transform: translateX(-50%); width: 15px; height: 8px; background: #228B22; clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%); }
+        .strawberry-1 { top: -15px; left: 50px; transform: rotate(-15deg); } .strawberry-2 { top: -15px; right: 50px; transform: rotate(15deg); }
+        .strawberry-3 { top: -15px; left: 120px; } .strawberry-4 { top: -15px; right: 120px; }
+        .balloon { position: absolute; width: 60px; height: 75px; background: radial-gradient(circle at 30% 30%, #ff9ff3, #c44569); border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; animation: balloonFloat 4s ease-in-out infinite; }
+        .balloon::after { content: ''; position: absolute; bottom: -30px; left: 50%; width: 2px; height: 30px; background: #999; }
+        @keyframes balloonFloat { 0%, 100% { transform: translateY(0px) rotate(-5deg); } 50% { transform: translateY(-30px) rotate(5deg); } }
+
+        #screen3 { background: #1a1a2e; justify-content: center; align-items: center; flex-direction: column; transition: background 0.5s ease; }
+        .glow { box-shadow: 0 0 50px rgba(255, 235, 59, 0.5); transition: box-shadow 0.5s ease; }
+        h2 { color: white; font-size: 2rem; margin-bottom: 30px; text-align: center; }
+
+        /* --- SCREEN 5 (Fireworks) --- */
+        #screen5 { background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%); justify-content: center; align-items: center; }
+        .firework { position: absolute; width: 6px; height: 6px; border-radius: 50%; animation: fireworkExplode 1.2s ease-out forwards; }
+        .firework.big { width: 10px; height: 10px; animation: fireworkExplodeBig 1.5s ease-out forwards; box-shadow: 0 0 10px currentColor; }
+        @keyframes fireworkExplode { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(var(--x), var(--y)) scale(0.5); opacity: 0; } }
+        @keyframes fireworkExplodeBig { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(var(--x), var(--y)) scale(0.2); opacity: 0; } }
+
+
+        /* --- SCREEN 6 (Messages) --- */
+        #screen6 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); justify-content: center; align-items: center; flex-direction: column; }
+        .message-page { display: none; position: absolute; width: 100%; height: 100%; justify-content: center; align-items: center; flex-direction: column; }
+        .message-page.active { display: flex; }
+        .msg-page-1 { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); }
+        .msg-page-2 { background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); }
+        .msg-page-3 { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
+        .msg-page-4 { background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%); }
+        .msg-page-5 { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+        .single-message-box { background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(30px); border-radius: 40px; padding: 80px 60px; text-align: center; max-width: 700px; border: 3px solid rgba(255, 255, 255, 0.5); box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25); position: relative; z-index: 10; animation: boxFadeIn 1s ease-out; }
+        @keyframes boxFadeIn { from { opacity: 0; transform: scale(0.8) translateY(50px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        .single-message-box::before { content: attr(data-icon); position: absolute; top: -50px; left: 50%; transform: translateX(-50%); font-size: 5rem; animation: iconFloat 3s ease-in-out infinite; filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3)); }
+        @keyframes iconFloat { 0%, 100% { transform: translateX(-50%) translateY(0) rotate(-5deg); } 50% { transform: translateX(-50%) translateY(-20px) rotate(5deg); } }
+        .single-message-text { font-size: 2rem; color: white; font-weight: 600; line-height: 1.8; text-shadow: 0 3px 15px rgba(0, 0, 0, 0.4); }
+        .next-message-btn { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border: none; padding: 18px 50px; font-size: 1.3rem; border-radius: 50px; cursor: pointer; margin-top: 40px; box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4); transition: all 0.3s; z-index: 10; animation: btnPulse 2s ease-in-out infinite; }
+        @keyframes btnPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        .next-message-btn:hover { transform: scale(1.1); box-shadow: 0 15px 40px rgba(245, 87, 108, 0.6); }
+        .page-decoration { position: absolute; animation: decorFloat 4s ease-in-out infinite; opacity: 0.6; font-size: 3rem; }
+        @keyframes decorFloat { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(20px, -20px) rotate(180deg); } }
+        .confetti-piece { position: absolute; width: 10px; height: 10px; background: #ff6b9d; animation: confettiFall 3s linear infinite; }
+        @keyframes confettiFall { 0% { transform: translateY(-100px) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
+
+        /* --- SCREEN 7 (Final Scene) --- */
+        #screen7 { background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%); justify-content: center; align-items: center; flex-direction: column; overflow: hidden; }
+        .moon { position: absolute; top: 50px; right: 50px; width: 80px; height: 80px; background: #fff; border-radius: 50%; box-shadow: 0 0 60px #fff, 0 0 100px #ffffbe; animation: moonGlow 4s infinite alternate; }
+        @keyframes moonGlow { from { box-shadow: 0 0 40px #fff, 0 0 80px #ffffbe; } to { box-shadow: 0 0 70px #fff, 0 0 120px #ffffbe; } }
+        .star { position: absolute; background: white; border-radius: 50%; opacity: 0; animation: twinkle ease-in-out infinite; }
+        @keyframes twinkle { 0% { opacity: 0; transform: scale(0.5); } 50% { opacity: 1; transform: scale(1.2); } 100% { opacity: 0; transform: scale(0.5); } }
+        .garden-container { position: absolute; bottom: 0; left: 0; width: 100%; height: 200px; z-index: 10; display: flex; justify-content: space-around; align-items: flex-end; }
+        .flower-stem { width: 4px; background: linear-gradient(to top, #006400, #228B22); border-radius: 2px; transform-origin: bottom center; animation: growStem 2s ease-out forwards, sway 3s ease-in-out infinite alternate 2s; }
+        @keyframes growStem { from { height: 0; } to { height: var(--h); } }
+        @keyframes sway { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
+        .flower-head { position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%) scale(0); width: 40px; height: 40px; animation: bloom 1s ease-out forwards var(--delay); }
+        @keyframes bloom { to { transform: translate(-50%, -50%) scale(1); } }
+        .petal { position: absolute; width: 100%; height: 100%; background: var(--color); border-radius: 50% 50% 0 50%; transform-origin: bottom right; }
+        .petal:nth-child(1) { transform: rotate(0deg); } .petal:nth-child(2) { transform: rotate(90deg); }
+        .petal:nth-child(3) { transform: rotate(180deg); } .petal:nth-child(4) { transform: rotate(270deg); }
+        .flower-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 15px; height: 15px; background: #ffeb3b; border-radius: 50%; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
+        .firefly { position: absolute; width: 4px; height: 4px; background: #ffff00; border-radius: 50%; box-shadow: 0 0 10px #ffff00; animation: fly 10s linear infinite; opacity: 0; }
+        @keyframes fly { 0% { transform: translate(0, 0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translate(var(--mx), var(--my)); opacity: 0; } }
+        .final-text { position: absolute; bottom: 50px; color: rgba(255,255,255,0.8); font-size: 1.5rem; text-shadow: 0 0 10px rgba(255,255,255,0.5); text-align: center; width: 100%; z-index: 20; opacity: 0; animation: fadeInText 3s ease-out forwards 3s; font-style: italic; }
+        @keyframes fadeInText { to { opacity: 1; } }
+        .restart-container { position: absolute; top: 20px; right: 20px; z-index: 30; opacity: 0; animation: fadeInText 2s ease-out forwards 5s; }
+        .grass { position: absolute; bottom: 0; width: 100%; height: 30px; background: #004d00; border-radius: 50% 50% 0 0 / 100% 100% 0 0; transform: scaleX(1.5); }
+        
+        /* --- SAO BĂNG LÀM LẠI LẦN 3 - ĐÚNG YÊU CẦU --- */
+        /* Container nghiêng góc 45 độ để bay chéo từ trái trên xuống phải dưới */
+        .shooting-star-container {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5;
+            transform: rotate(45deg);
+        }
+        /* Thân sao băng: Ngắn hơn, sáng trắng ở đầu (bên phải do xoay) và mờ dần về đuôi (bên trái) */
+        .shooting-star {
+            position: absolute; height: 2px; width: 180px; /* Ngắn lại */
+            background: linear-gradient(to left, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* Sáng ở đầu bên phải */
+            opacity: 0;
+            animation: shooting 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; /* Bay vút qua mượt mà */
+        }
+        /* Đầu sao băng: Đốm sáng nhỏ ở phía trước */
+        .shooting-star::before {
+            content: ''; position: absolute; top: 50%; right: 0; /* Nằm ở đầu bên phải */
+            height: 4px; width: 4px; border-radius: 50%; background: #fff;
+            transform: translateY(-50%);
+            box-shadow: 0 0 15px #fff, 0 0 30px #fff; /* Phát sáng mạnh */
+        }
+
+        /* Animation bay từ ngoài màn hình bên trái sang bên phải */
+        @keyframes shooting {
+            0% { transform: translateX(-300px) scale(0.8); opacity: 1; }
+            100% { transform: translateX(calc(100vw + 300px)) scale(1.2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="screen1" class="screen active">
+        <div class="floating-icon" style="top: 10%; left: 10%;">✨</div>
+        <div class="floating-icon" style="top: 20%; right: 15%; animation-delay: 0.5s;">💖</div>
+        <div class="floating-icon" style="bottom: 15%; left: 20%; animation-delay: 1s;">🎉</div>
+        <div class="floating-icon" style="bottom: 25%; right: 10%; animation-delay: 1.5s;">✨</div>
+        
+        <div class="greeting-box">
+            <h1>🎉 Chúc mừng sinh nhật 🎂<br><span style="color: #cc0033;">Ánh Ngọc</span>  </h1>
+            <h2>24 / 01</h2>
+            <p>Một điều nhỏ xinh được chuẩn bị riêng cho Ngọc ✨</p>
+            <button class="btn-cute" id="startBtn">Nhấn vào để xem bất ngờ</button>
+        </div>
+    </div>
+
+    <div id="screen2" class="screen">
+        <div class="balloon" style="top: 10%; left: 10%;"></div>
+        <div class="balloon" style="top: 15%; right: 15%; animation-delay: 0.5s; background: radial-gradient(circle at 30% 30%, #ffeaa7, #fdcb6e);"></div>
+        <div class="balloon" style="bottom: 20%; left: 20%; animation-delay: 1s; background: radial-gradient(circle at 30% 30%, #a29bfe, #6c5ce7);"></div>
+        <h2 style="color: #c44569; position: absolute; top: 10%;">🎂 Một chiếc bánh dành cho Ánh Ngọc</h2>
+        <div class="cake-container">
+            <div class="candle-holder">
+                <div class="candle" data-candle="1"><div class="candle-wick"></div></div>
+                <div class="candle" data-candle="2"><div class="candle-wick"></div></div>
+                <div class="candle" data-candle="3"><div class="candle-wick"></div></div>
+                <div class="candle" data-candle="4"><div class="candle-wick"></div></div>
+            </div>
+            <div class="cake-base-plate"></div>
+            <div class="cake">
+                <div class="cake-cream-top"></div>
+                <div class="cake-frosting">
+                    <div class="frosting-drip"></div><div class="frosting-drip"></div><div class="frosting-drip"></div>
+                    <div class="frosting-drip"></div><div class="frosting-drip"></div><div class="frosting-drip"></div>
+                </div>
+                <div class="cake-decoration"></div><div class="cake-decoration"></div><div class="cake-decoration"></div>
+                <div class="cake-decoration"></div><div class="cake-decoration"></div><div class="cake-decoration"></div>
+                <div class="cake-decoration"></div><div class="cake-decoration"></div>
+                <div class="cake-layer">
+                    <div class="strawberry strawberry-1"></div><div class="strawberry strawberry-2"></div>
+                    <div class="strawberry strawberry-3"></div><div class="strawberry strawberry-4"></div>
+                </div>
+            </div>
+        </div>
+        <button class="btn-cute" id="lightCandlesBtn" style="margin-top: 50px;">✨ Bắt đầu thắp nến ✨</button>
+    </div>
+
+    <div id="screen3" class="screen">
+        <h2 style="position: absolute; top: 10%;">✨ Giờ thì hãy thổi nến nha ✨</h2>
+        <p style="color: #ffe66d; font-size: 1.2rem; margin-top: 20px; text-align: center; position: absolute; top: 18%;"></p>
+        <div class="cake-container glow">
+            <div class="candle-holder">
+                <div class="candle clickable-candle" data-candle="1"><div class="candle-wick"></div><div class="flame active"></div></div>
+                <div class="candle clickable-candle" data-candle="2"><div class="candle-wick"></div><div class="flame active"></div></div>
+                <div class="candle clickable-candle" data-candle="3"><div class="candle-wick"></div><div class="flame active"></div></div>
+                <div class="candle clickable-candle" data-candle="4"><div class="candle-wick"></div><div class="flame active"></div></div>
+            </div>
+            <div class="cake-base-plate"></div>
+            <div class="cake">
+                <div class="cake-cream-top"></div>
+                <div class="cake-frosting">
+                    <div class="frosting-drip"></div><div class="frosting-drip"></div><div class="frosting-drip"></div>
+                    <div class="frosting-drip"></div><div class="frosting-drip"></div><div class="frosting-drip"></div>
+                </div>
+                <div class="cake-decoration"></div><div class="cake-decoration"></div><div class="cake-decoration"></div>
+                <div class="cake-decoration"></div><div class="cake-decoration"></div><div class="cake-decoration"></div>
+                <div class="cake-decoration"></div><div class="cake-decoration"></div>
+                <div class="cake-layer">
+                    <div class="strawberry strawberry-1"></div><div class="strawberry strawberry-2"></div>
+                    <div class="strawberry strawberry-3"></div><div class="strawberry strawberry-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="screen5" class="screen"></div>
+
+    <div id="screen6" class="screen">
+        <div class="message-page msg-page-1 active">
+            <div class="page-decoration" style="top: 15%; left: 10%;">💖</div><div class="page-decoration" style="top: 25%; right: 15%;">💕</div>
+            <div class="single-message-box" data-icon="💖">
+                <div class="single-message-text">Chúc Ánh Ngọc một tuổi mới thật nhiều niềm vui 🎂</div>
+                <button class="next-message-btn" data-next="2">Tiếp tục nè </button>
+            </div>
+        </div>
+        <div class="message-page msg-page-2">
+            <div class="page-decoration" style="top: 10%; left: 12%;">🌸</div><div class="page-decoration" style="top: 20%; right: 10%;">🌺</div>
+            <div class="single-message-box" data-icon="🌸">
+                <div class="single-message-text">Luôn xinh đẹp, bình an và hạnh phúc</div>
+                <button class="next-message-btn" data-next="3">Còn nữa đây 🌺</button>
+            </div>
+        </div>
+        <div class="message-page msg-page-3">
+            <div class="page-decoration" style="top: 12%; left: 15%;">⭐</div><div class="page-decoration" style="top: 18%; right: 12%;">✨</div>
+            <div class="single-message-box" data-icon="✨">
+                <div class="single-message-text">Luôn yêu đời và gặp được nhiều điều may mắn</div>
+                <button class="next-message-btn" data-next="4">Chưa hết đâu ✨</button>
+            </div>
+        </div>
+        <div class="message-page msg-page-4">
+            <div class="page-decoration" style="top: 15%; left: 8%;">🎁</div><div class="page-decoration" style="top: 22%; right: 15%;">🎀</div>
+            <div class="single-message-box" data-icon="🎁">
+                <div class="single-message-text">Luôn luôn thành công trên con đường mình đã chọn </div>
+                <button class="next-message-btn" data-next="5">Còn 1 lời chúc nữa 🎈</button>
+            </div>
+        </div>
+        <div class="message-page msg-page-5">
+            <div class="page-decoration" style="top: 10%; left: 10%;">✨</div><div class="page-decoration" style="top: 25%; right: 8%;">💫</div>
+            <div class="single-message-box" data-icon="🎂">
+                <div class="single-message-text">Và mong mọi điều tốt đẹp nhất sẽ luôn đến với bà !</div>
+                <button class="next-message-btn" data-next="relax">Món quà nhỏ cuối cùng... 🌙</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="screen7" class="screen">
+        <div class="moon"></div>
+        <div id="starContainer"></div>
+        <div class="shooting-star-container"></div>
+        <div id="fireflyContainer"></div>
+        <div class="grass"></div>
+        <div class="garden-container" id="gardenContainer"></div>
+       
+        
+    </div>
+
+    <script>
+        let candlesLit = 0;
+        let candlesBlown = 0;
+        let currentMessagePage = 1;
+
+        $('#startBtn').click(function() {
+            $('#screen1').fadeOut(800, function() {
+                $('#screen2').addClass('active').hide().fadeIn(800);
+                createConfetti();
+            });
+        });
+
+        $('#lightCandlesBtn').click(function() {
+            $('#screen2').fadeOut(800, function() {
+                $('#screen3').addClass('active').hide().fadeIn(800);
+                lightCandlesSequence();
+            });
+        });
+
+        function lightCandlesSequence() {
+            $('#screen3 .flame').removeClass('active');
+            candlesLit = 0;
+            let interval = setInterval(function() {
+                if (candlesLit < 4) {
+                    $($('#screen3 .flame')[candlesLit]).addClass('active');
+                    candlesLit++;
+                } else { clearInterval(interval); }
+            }, 500);
+        }
+
+        $('.clickable-candle').click(function() {
+            let flame = $(this).find('.flame');
+            if (flame.hasClass('active')) {
+                flame.removeClass('active');
+                let smoke = $('<div class="smoke"></div>');
+                $(this).append(smoke);
+                smoke.css('display', 'block');
+                setTimeout(() => smoke.remove(), 1000);
+                candlesBlown++;
+                let opacity = 1 - (candlesBlown * 0.25);
+                $('#screen3').css('background', `rgba(26, 26, 46, ${opacity})`);
+                $('.cake-container').css('opacity', opacity);
+                if (candlesBlown === 4) {
+                    $('#screen3').css('background', '#000');
+                    $('.cake-container').css('opacity', 0);
+                    $('.glow').css('box-shadow', 'none');
+                    $('h2, p').fadeOut(500);
+                    setTimeout(showDramaticFireworks, 1500); 
+                }
+            }
+        });
+
+        function showDramaticFireworks() {
+            $('#screen3').hide();
+            $('#screen5').addClass('active').hide().fadeIn(100, function() {
+                createBigCentralFirework();
+                setTimeout(createFireworks, 800);
+                setTimeout(showMessage, 5000);
+            });
+        }
+
+        function createBigCentralFirework() {
+            let centerX = window.innerWidth / 2;
+            let centerY = window.innerHeight / 2;
+            const colors = ['#ff0000', '#ffff00', '#ff69b4', '#00ffff'];
+             for (let j = 0; j < 80; j++) {
+                let firework = $('<div class="firework big"></div>');
+                let angle = (Math.PI * 2 * j) / 80;
+                let distance = 200 + Math.random() * 150;
+                let x = Math.cos(angle) * distance;
+                let y = Math.sin(angle) * distance;
+                firework.css({ left: centerX + 'px', top: centerY + 'px', background: colors[Math.floor(Math.random() * colors.length)], color: colors[Math.floor(Math.random() * colors.length)], '--x': x + 'px', '--y': y + 'px' });
+                $('#screen5').append(firework);
+                setTimeout(() => firework.remove(), 1500);
+            }
+        }
+
+        function createFireworks() {
+            const colors = ['#ff6b9d', '#ffeaa7', '#a29bfe', '#fd79a8', '#fdcb6e'];
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    let centerX = Math.random() * window.innerWidth;
+                    let centerY = Math.random() * (window.innerHeight * 0.7);
+                    for (let j = 0; j < 40; j++) {
+                        let firework = $('<div class="firework"></div>');
+                        let angle = (Math.PI * 2 * j) / 40;
+                        let distance = 100 + Math.random() * 100;
+                        let x = Math.cos(angle) * distance;
+                        let y = Math.sin(angle) * distance;
+                        firework.css({ left: centerX + 'px', top: centerY + 'px', background: colors[Math.floor(Math.random() * colors.length)], '--x': x + 'px', '--y': y + 'px' });
+                        $('#screen5').append(firework);
+                        setTimeout(() => firework.remove(), 1200);
+                    }
+                }, i * 400);
+            }
+        }
+
+        function showMessage() {
+            $('#screen5').fadeOut(800, function() {
+                $('#screen6').addClass('active').hide().fadeIn(800);
+                currentMessagePage = 1;
+                createPageConfetti();
+            });
+        }
+
+        $('.next-message-btn').click(function() {
+            let nextPage = $(this).data('next');
+            let currentPage = $(this).closest('.message-page');
+            
+            if (nextPage === 'relax') {
+                currentPage.fadeOut(500, function() {
+                    $('#screen6').removeClass('active');
+                    $('#screen7').addClass('active').hide().fadeIn(1500);
+                    initRelaxationScreen();
+                });
+            } else {
+                currentPage.fadeOut(500, function() {
+                    $('.msg-page-' + nextPage).addClass('active').hide().fadeIn(500);
+                    currentMessagePage = nextPage;
+                    createPageConfetti();
+                });
+            }
+        });
+
+        function createPageConfetti() {
+            const colors = ['#ff6b9d', '#ffeaa7', '#a29bfe', '#fd79a8', '#fdcb6e', '#00b894'];
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    let confetti = $('<div class="confetti-piece"></div>');
+                    confetti.css({ left: Math.random() * 100 + '%', top: '-10px', background: colors[Math.floor(Math.random() * colors.length)], animationDelay: (Math.random() * 2) + 's', animationDuration: (2 + Math.random() * 2) + 's', width: (5 + Math.random() * 10) + 'px', height: (5 + Math.random() * 10) + 'px', borderRadius: Math.random() > 0.5 ? '50%' : '0' });
+                    $('#screen6').append(confetti);
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 100);
+            }
+        }
+
+        function createConfetti() {
+            const colors = ['#ff6b9d', '#ffeaa7', '#a29bfe', '#fd79a8', '#fdcb6e'];
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    let confetti = $('<div class="confetti-piece"></div>');
+                    confetti.css({ left: Math.random() * 100 + '%', top: '-10px', background: colors[Math.floor(Math.random() * colors.length)], animationDelay: (Math.random() * 2) + 's', width: (8 + Math.random() * 8) + 'px', height: (8 + Math.random() * 8) + 'px' });
+                    $('#screen2').append(confetti);
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 150);
+            }
+        }
+
+        function initRelaxationScreen() {
+            const starContainer = $('#starContainer');
+            for(let i=0; i<150; i++) {
+                let star = $('<div class="star"></div>');
+                let size = Math.random() * 2 + 1 + 'px';
+                star.css({ width: size, height: size, left: Math.random() * 100 + '%', top: Math.random() * 80 + '%', animationDuration: (Math.random() * 3 + 2) + 's', animationDelay: Math.random() * 5 + 's' });
+                starContainer.append(star);
+            }
+
+            // Tạo sao băng ngẫu nhiên bằng JS
+            const shootingStarContainer = $('.shooting-star-container');
+            setInterval(() => {
+                let star = $('<div class="shooting-star"></div>');
+                // Random vị trí xuất hiện theo chiều dọc
+                let topPos = Math.random() * 60 + '%'; 
+                // Random tốc độ và độ trễ một chút
+                let duration = 2 + Math.random() * 1 + 's'; 
+                let scale = 0.8 + Math.random() * 0.4; // Random kích thước
+
+                star.css({
+                    'top': topPos,
+                    'left': '-300px', // Bắt đầu từ ngoài màn hình bên trái
+                    'animation-duration': duration,
+                    'transform': `scale(${scale})`
+                });
+                shootingStarContainer.append(star);
+                // Xóa sao băng sau khi bay xong
+                setTimeout(() => { star.remove(); }, parseFloat(duration) * 1000 + 100);
+            }, 1200); // Xuất hiện liên tục hơn
+
+            const fireflyContainer = $('#fireflyContainer');
+            for(let i=0; i<20; i++) {
+                let fly = $('<div class="firefly"></div>');
+                let startX = Math.random() * 100 + 'vw';
+                let startY = Math.random() * 80 + 'vh';
+                let moveX = (Math.random() - 0.5) * 400 + 'px';
+                let moveY = (Math.random() - 0.5) * 400 + 'px';
+                fly.css({ left: startX, top: startY, '--mx': moveX, '--my': moveY, animationDuration: (Math.random() * 10 + 10) + 's', animationDelay: Math.random() * 5 + 's' });
+                fireflyContainer.append(fly);
+            }
+
+            const garden = $('#gardenContainer');
+            const flowerColors = ['#ff69b4', '#dda0dd', '#87ceeb', '#ffb6c1', '#f0e68c'];
+            for(let i=0; i<15; i++) {
+                let height = 50 + Math.random() * 100 + 'px';
+                let color = flowerColors[Math.floor(Math.random() * flowerColors.length)];
+                let delay = Math.random() * 2 + 's';
+                let flowerHtml = `<div style="position: relative; display: flex; flex-direction: column; align-items: center; margin-bottom: -10px;"><div class="flower-head" style="--delay: ${delay}"><div class="petal" style="--color: ${color}"></div><div class="petal" style="--color: ${color}"></div><div class="petal" style="--color: ${color}"></div><div class="petal" style="--color: ${color}"></div><div class="flower-center"></div></div><div class="flower-stem" style="--h: ${height}; animation-delay: 0s, ${delay}"></div></div>`;
+                garden.append(flowerHtml);
+            }
+        }
+
+        $('#restartBtn').click(function() { location.reload(); });
+    </script>
+</body>
+</html>
