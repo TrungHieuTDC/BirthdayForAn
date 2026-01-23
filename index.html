@@ -12,7 +12,7 @@
         .screen { min-height: 100vh; display: none; position: relative; overflow: hidden; width: 100%; height: 100vh; }
         .screen.active { display: flex; }
 
-        /* --- SCREEN 1 --- */
+
         #screen1 { background: linear-gradient(135deg, #ffc3f0 0%, #e0c3fc 100%); justify-content: center; align-items: center; }
         .greeting-box { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(10px); border-radius: 30px; padding: 60px 40px; text-align: center; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); border: 2px solid rgba(255, 255, 255, 0.5); max-width: 500px; animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
         @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
@@ -26,7 +26,7 @@
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- SCREEN 2 & 3 (Cake) --- */
+     
         #screen2 { background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%); justify-content: center; align-items: center; flex-direction: column; }
         .cake-container { position: relative; animation: bounce 2s ease-in-out infinite; margin-top: 50px; }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
@@ -34,16 +34,24 @@
         .cake::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 15px; background: linear-gradient(90deg, #ff69b4 0%, #ff1493 25%, #ff69b4 50%, #ff1493 75%, #ff69b4 100%); border-radius: 0 0 15px 15px; }
         .cake-layer { width: 100%; height: 70px; background: linear-gradient(180deg, #fff5e6 0%, #ffe4b5 50%, #ffd700 100%); border-radius: 10px; position: absolute; top: -40px; box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3); border: 3px solid #ffb6c1; }
         .cake-layer::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 12px; background: linear-gradient(90deg, #ff1493 0%, #ff69b4 25%, #ff1493 50%, #ff69b4 75%, #ff1493 100%); border-radius: 0 0 10px 10px; }
-        .cake-decoration { position: absolute; width: 25px; height: 25px; background: radial-gradient(circle, #ff1493 0%, #ff69b4 70%); border-radius: 50%; box-shadow: 0 3px 8px rgba(255, 20, 147, 0.5); }
-        .cake-decoration:nth-child(1) { top: 30px; left: 30px; } .cake-decoration:nth-child(2) { top: 30px; right: 30px; }
-        .cake-decoration:nth-child(3) { top: 100px; left: 50px; } .cake-decoration:nth-child(4) { top: 100px; right: 50px; }
-        .cake-decoration:nth-child(5) { bottom: 40px; left: 70px; } .cake-decoration:nth-child(6) { bottom: 40px; right: 70px; }
-        .cake-decoration:nth-child(7) { top: 160px; left: 100px; } .cake-decoration:nth-child(8) { top: 160px; right: 100px; }
+        .cake-decoration { position: absolute; width: 25px; height: 25px; background: radial-gradient(circle, #ff1493 0%, #ff69b4 70%); border-radius: 50%; box-shadow: 0 3px 8px rgba(255, 20, 147, 0.5); animation: decorationPulse 2s ease-in-out infinite; }
+        @keyframes decorationPulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.3); opacity: 0.7; } }
+        .cake-decoration:nth-child(1) { top: 30px; left: 30px; animation-delay: 0s; } 
+        .cake-decoration:nth-child(2) { top: 30px; right: 30px; animation-delay: 0.3s; }
+        .cake-decoration:nth-child(3) { top: 100px; left: 50px; animation-delay: 0.6s; } 
+        .cake-decoration:nth-child(4) { top: 100px; right: 50px; animation-delay: 0.9s; }
+        .cake-decoration:nth-child(5) { bottom: 40px; left: 70px; animation-delay: 1.2s; } 
+        .cake-decoration:nth-child(6) { bottom: 40px; right: 70px; animation-delay: 1.5s; }
+        .cake-decoration:nth-child(7) { top: 160px; left: 100px; animation-delay: 1.8s; } 
+        .cake-decoration:nth-child(8) { top: 160px; right: 100px; animation-delay: 2.1s; }
         .cake-frosting { position: absolute; width: 100%; height: 100%; overflow: hidden; border-radius: 15px; }
         .frosting-drip { position: absolute; top: 0; width: 40px; height: 50px; background: linear-gradient(180deg, #fff 0%, #ffe5f4 100%); border-radius: 0 0 20px 20px; opacity: 0.9; }
-        .frosting-drip:nth-child(1) { left: 20px; height: 45px; } .frosting-drip:nth-child(2) { left: 80px; height: 55px; }
-        .frosting-drip:nth-child(3) { left: 140px; height: 40px; } .frosting-drip:nth-child(4) { left: 200px; height: 60px; }
-        .frosting-drip:nth-child(5) { left: 260px; height: 48px; } .frosting-drip:nth-child(6) { left: 310px; height: 52px; }
+        .frosting-drip:nth-child(1) { left: 20px; height: 45px; } 
+        .frosting-drip:nth-child(2) { left: 80px; height: 55px; }
+        .frosting-drip:nth-child(3) { left: 140px; height: 40px; } 
+        .frosting-drip:nth-child(4) { left: 200px; height: 60px; }
+        .frosting-drip:nth-child(5) { left: 260px; height: 48px; } 
+        .frosting-drip:nth-child(6) { left: 310px; height: 52px; }
         .cake-cream-top { position: absolute; top: -5px; left: 0; right: 0; height: 20px; background: linear-gradient(180deg, #ffffff 0%, #ffe5f4 100%); border-radius: 50% 50% 0 0 / 100% 100% 0 0; box-shadow: 0 -5px 15px rgba(255, 255, 255, 0.8); }
         .cake-base-plate { position: absolute; bottom: -20px; left: -25px; right: -25px; height: 20px; background: linear-gradient(180deg, #daa520 0%, #b8860b 100%); border-radius: 50%; box-shadow: 0 5px 15px rgba(184, 134, 11, 0.5); }
         .candle-holder { position: absolute; top: -80px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; }
@@ -56,8 +64,11 @@
         @keyframes smokeRise { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-50px); } }
         .strawberry { position: absolute; width: 20px; height: 22px; background: linear-gradient(135deg, #ff3366 0%, #cc0033 100%); clip-path: polygon(50% 0%, 100% 40%, 90% 100%, 10% 100%, 0% 40%); box-shadow: 0 2px 5px rgba(204, 0, 51, 0.5); }
         .strawberry::before { content: ''; position: absolute; top: -5px; left: 50%; transform: translateX(-50%); width: 15px; height: 8px; background: #228B22; clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%); }
-        .strawberry-1 { top: -15px; left: 50px; transform: rotate(-15deg); } .strawberry-2 { top: -15px; right: 50px; transform: rotate(15deg); }
-        .strawberry-3 { top: -15px; left: 120px; } .strawberry-4 { top: -15px; right: 120px; }
+        .strawberry::after { content: ''; position: absolute; top: 5px; left: 3px; width: 2px; height: 2px; background: #fff; border-radius: 50%; box-shadow: 4px 2px 0 #fff, 8px 4px 0 #fff, 6px 8px 0 #fff, 10px 10px 0 #fff; }
+        .strawberry-1 { top: -15px; left: 50px; transform: rotate(-15deg); } 
+        .strawberry-2 { top: -15px; right: 50px; transform: rotate(15deg); }
+        .strawberry-3 { top: -15px; left: 120px; } 
+        .strawberry-4 { top: -15px; right: 120px; }
         .balloon { position: absolute; width: 60px; height: 75px; background: radial-gradient(circle at 30% 30%, #ff9ff3, #c44569); border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; animation: balloonFloat 4s ease-in-out infinite; }
         .balloon::after { content: ''; position: absolute; bottom: -30px; left: 50%; width: 2px; height: 30px; background: #999; }
         @keyframes balloonFloat { 0%, 100% { transform: translateY(0px) rotate(-5deg); } 50% { transform: translateY(-30px) rotate(5deg); } }
@@ -66,15 +77,14 @@
         .glow { box-shadow: 0 0 50px rgba(255, 235, 59, 0.5); transition: box-shadow 0.5s ease; }
         h2 { color: white; font-size: 2rem; margin-bottom: 30px; text-align: center; }
 
-        /* --- SCREEN 5 (Fireworks) --- */
+
         #screen5 { background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%); justify-content: center; align-items: center; }
         .firework { position: absolute; width: 6px; height: 6px; border-radius: 50%; animation: fireworkExplode 1.2s ease-out forwards; }
         .firework.big { width: 10px; height: 10px; animation: fireworkExplodeBig 1.5s ease-out forwards; box-shadow: 0 0 10px currentColor; }
         @keyframes fireworkExplode { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(var(--x), var(--y)) scale(0.5); opacity: 0; } }
         @keyframes fireworkExplodeBig { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(var(--x), var(--y)) scale(0.2); opacity: 0; } }
 
-
-        /* --- SCREEN 6 (Messages) --- */
+  
         #screen6 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); justify-content: center; align-items: center; flex-direction: column; }
         .message-page { display: none; position: absolute; width: 100%; height: 100%; justify-content: center; align-items: center; flex-direction: column; }
         .message-page.active { display: flex; }
@@ -96,58 +106,468 @@
         .confetti-piece { position: absolute; width: 10px; height: 10px; background: #ff6b9d; animation: confettiFall 3s linear infinite; }
         @keyframes confettiFall { 0% { transform: translateY(-100px) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
 
-        /* --- SCREEN 7 (Final Scene) --- */
-        #screen7 { background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%); justify-content: center; align-items: center; flex-direction: column; overflow: hidden; }
-        .moon { position: absolute; top: 50px; right: 50px; width: 80px; height: 80px; background: #fff; border-radius: 50%; box-shadow: 0 0 60px #fff, 0 0 100px #ffffbe; animation: moonGlow 4s infinite alternate; }
-        @keyframes moonGlow { from { box-shadow: 0 0 40px #fff, 0 0 80px #ffffbe; } to { box-shadow: 0 0 70px #fff, 0 0 120px #ffffbe; } }
-        .star { position: absolute; background: white; border-radius: 50%; opacity: 0; animation: twinkle ease-in-out infinite; }
-        @keyframes twinkle { 0% { opacity: 0; transform: scale(0.5); } 50% { opacity: 1; transform: scale(1.2); } 100% { opacity: 0; transform: scale(0.5); } }
-        .garden-container { position: absolute; bottom: 0; left: 0; width: 100%; height: 200px; z-index: 10; display: flex; justify-content: space-around; align-items: flex-end; }
-        .flower-stem { width: 4px; background: linear-gradient(to top, #006400, #228B22); border-radius: 2px; transform-origin: bottom center; animation: growStem 2s ease-out forwards, sway 3s ease-in-out infinite alternate 2s; }
-        @keyframes growStem { from { height: 0; } to { height: var(--h); } }
-        @keyframes sway { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
-        .flower-head { position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%) scale(0); width: 40px; height: 40px; animation: bloom 1s ease-out forwards var(--delay); }
-        @keyframes bloom { to { transform: translate(-50%, -50%) scale(1); } }
-        .petal { position: absolute; width: 100%; height: 100%; background: var(--color); border-radius: 50% 50% 0 50%; transform-origin: bottom right; }
-        .petal:nth-child(1) { transform: rotate(0deg); } .petal:nth-child(2) { transform: rotate(90deg); }
-        .petal:nth-child(3) { transform: rotate(180deg); } .petal:nth-child(4) { transform: rotate(270deg); }
-        .flower-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 15px; height: 15px; background: #ffeb3b; border-radius: 50%; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
-        .firefly { position: absolute; width: 4px; height: 4px; background: #ffff00; border-radius: 50%; box-shadow: 0 0 10px #ffff00; animation: fly 10s linear infinite; opacity: 0; }
-        @keyframes fly { 0% { transform: translate(0, 0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translate(var(--mx), var(--my)); opacity: 0; } }
-        .final-text { position: absolute; bottom: 50px; color: rgba(255,255,255,0.8); font-size: 1.5rem; text-shadow: 0 0 10px rgba(255,255,255,0.5); text-align: center; width: 100%; z-index: 20; opacity: 0; animation: fadeInText 3s ease-out forwards 3s; font-style: italic; }
-        @keyframes fadeInText { to { opacity: 1; } }
-        .restart-container { position: absolute; top: 20px; right: 20px; z-index: 30; opacity: 0; animation: fadeInText 2s ease-out forwards 5s; }
-        .grass { position: absolute; bottom: 0; width: 100%; height: 30px; background: #004d00; border-radius: 50% 50% 0 0 / 100% 100% 0 0; transform: scaleX(1.5); }
+     
+        #screen7 { 
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%); 
+            justify-content: center; 
+            align-items: center; 
+            flex-direction: column; 
+            overflow: hidden; 
+        }
         
-        /* --- SAO BĂNG LÀM LẠI LẦN 3 - ĐÚNG YÊU CẦU --- */
-        /* Container nghiêng góc 45 độ để bay chéo từ trái trên xuống phải dưới */
+     
+        .moon { 
+            position: absolute; 
+            top: 50px; 
+            right: 80px; 
+            width: 100px; 
+            height: 100px; 
+            background: radial-gradient(circle at 30% 30%, #ffffff, #f0f0f0); 
+            border-radius: 50%; 
+            box-shadow: 
+                0 0 40px rgba(255, 255, 255, 0.8),
+                0 0 80px rgba(255, 255, 190, 0.6),
+                0 0 120px rgba(255, 255, 150, 0.4),
+                inset -10px -10px 20px rgba(0, 0, 0, 0.1);
+            animation: moonGlow 4s infinite alternate; 
+        }
+        @keyframes moonGlow { 
+            from { box-shadow: 0 0 40px rgba(255, 255, 255, 0.8), 0 0 80px rgba(255, 255, 190, 0.6), 0 0 120px rgba(255, 255, 150, 0.4), inset -10px -10px 20px rgba(0, 0, 0, 0.1); } 
+            to { box-shadow: 0 0 60px rgba(255, 255, 255, 1), 0 0 100px rgba(255, 255, 190, 0.8), 0 0 150px rgba(255, 255, 150, 0.6), inset -10px -10px 20px rgba(0, 0, 0, 0.1); } 
+        }
+        
+        /* Enhanced stars with different sizes and brightness */
+        .star { 
+            position: absolute; 
+            background: white; 
+            border-radius: 50%; 
+            opacity: 0; 
+            animation: twinkle ease-in-out infinite; 
+            box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+        }
+        .star.bright {
+            box-shadow: 0 0 8px rgba(255, 255, 255, 1), 0 0 12px rgba(255, 255, 255, 0.6);
+        }
+        @keyframes twinkle { 
+            0% { opacity: 0; transform: scale(0.5); } 
+            50% { opacity: 1; transform: scale(1.2); } 
+            100% { opacity: 0; transform: scale(0.5); } 
+        }
+        
+        /* REALISTIC SHOOTING STARS */
         .shooting-star-container {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5;
-            transform: rotate(45deg);
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            pointer-events: none; 
+            z-index: 5;
         }
-        /* Thân sao băng: Ngắn hơn, sáng trắng ở đầu (bên phải do xoay) và mờ dần về đuôi (bên trái) */
+        
         .shooting-star {
-            position: absolute; height: 2px; width: 180px; /* Ngắn lại */
-            background: linear-gradient(to left, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* Sáng ở đầu bên phải */
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.8) 30%,
+                rgba(255, 255, 255, 1) 50%,
+                rgba(255, 255, 255, 0.8) 70%,
+                rgba(255, 255, 255, 0) 100%
+            );
             opacity: 0;
-            animation: shooting 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; /* Bay vút qua mượt mà */
+            filter: blur(0.5px);
         }
-        /* Đầu sao băng: Đốm sáng nhỏ ở phía trước */
+        
         .shooting-star::before {
-            content: ''; position: absolute; top: 50%; right: 0; /* Nằm ở đầu bên phải */
-            height: 4px; width: 4px; border-radius: 50%; background: #fff;
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
             transform: translateY(-50%);
-            box-shadow: 0 0 15px #fff, 0 0 30px #fff; /* Phát sáng mạnh */
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, 
+                rgba(255, 255, 255, 1) 0%,
+                rgba(200, 220, 255, 0.8) 30%,
+                rgba(150, 180, 255, 0) 100%
+            );
+            border-radius: 50%;
+            box-shadow: 
+                0 0 8px rgba(255, 255, 255, 1),
+                0 0 15px rgba(200, 220, 255, 0.8),
+                0 0 25px rgba(150, 180, 255, 0.4);
         }
-
-        /* Animation bay từ ngoài màn hình bên trái sang bên phải */
-        @keyframes shooting {
-            0% { transform: translateX(-300px) scale(0.8); opacity: 1; }
-            100% { transform: translateX(calc(100vw + 300px)) scale(1.2); opacity: 0; }
+        
+        .shooting-star::after {
+            content: '';
+            position: absolute;
+            right: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            opacity: 0.4;
+        }
+        
+        /* Rain System */
+        .rain-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+        }
+        
+        .rain-drop {
+            position: absolute;
+            width: 1px;
+            height: 15px;
+            background: linear-gradient(to bottom, 
+                rgba(174, 194, 224, 0) 0%,
+                rgba(174, 194, 224, 0.5) 50%,
+                rgba(174, 194, 224, 0.8) 100%
+            );
+            animation: rainFall linear infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes rainFall {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+        
+        .rain-splash {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .splash {
+            position: absolute;
+            bottom: 30px;
+            width: 3px;
+            height: 3px;
+            background: rgba(174, 194, 224, 0.4);
+            border-radius: 50%;
+            animation: splash 0.6s ease-out forwards;
+        }
+        
+        @keyframes splash {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+        
+        /* Clouds */
+        .cloud-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 100px;
+            opacity: 0.8;
+            animation: cloudDrift linear infinite;
+        }
+        
+        .cloud::before {
+            content: '';
+            position: absolute;
+            background: inherit;
+            border-radius: inherit;
+        }
+        
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: inherit;
+            border-radius: inherit;
+        }
+        
+        @keyframes cloudDrift {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(calc(100vw + 100%));
+            }
+        }
+        
+        /* Garden elements */
+        .garden-container { 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 220px; 
+            z-index: 10; 
+            display: flex; 
+            justify-content: space-around; 
+            align-items: flex-end; 
+        }
+        
+        .flower-stem { 
+            width: 4px; 
+            background: linear-gradient(to top, #004d00, #228B22); 
+            border-radius: 2px; 
+            transform-origin: bottom center; 
+            animation: growStem 2s ease-out forwards, sway 3s ease-in-out infinite alternate 2s; 
+            box-shadow: 0 0 3px rgba(34, 139, 34, 0.5);
+        }
+        @keyframes growStem { 
+            from { height: 0; } 
+            to { height: var(--h); } 
+        }
+        @keyframes sway { 
+            from { transform: rotate(-5deg); } 
+            to { transform: rotate(5deg); } 
+        }
+        
+        .flower-head { 
+            position: absolute; 
+            top: 0; 
+            left: 50%; 
+            transform: translate(-50%, -50%) scale(0); 
+            width: 40px; 
+            height: 40px; 
+            animation: bloom 1s ease-out forwards var(--delay); 
+            filter: drop-shadow(0 0 5px var(--glow-color));
+        }
+        @keyframes bloom { 
+            to { transform: translate(-50%, -50%) scale(1); } 
+        }
+        
+        .petal { 
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            background: var(--color); 
+            border-radius: 50% 50% 0 50%; 
+            transform-origin: bottom right; 
+        }
+        .petal:nth-child(1) { transform: rotate(0deg); } 
+        .petal:nth-child(2) { transform: rotate(90deg); }
+        .petal:nth-child(3) { transform: rotate(180deg); } 
+        .petal:nth-child(4) { transform: rotate(270deg); }
+        
+        .flower-center { 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            width: 15px; 
+            height: 15px; 
+            background: radial-gradient(circle, #ffeb3b, #fdd835); 
+            border-radius: 50%; 
+            box-shadow: 0 0 8px rgba(255, 235, 59, 0.6);
+        }
+        
+        /* Enhanced fireflies */
+        .firefly { 
+            position: absolute; 
+            width: 5px; 
+            height: 5px; 
+            background: radial-gradient(circle, #ffff00, transparent); 
+            border-radius: 50%; 
+            box-shadow: 
+                0 0 10px #ffff00,
+                0 0 20px #ffff00,
+                0 0 30px rgba(255, 255, 0, 0.5);
+            animation: fly 10s linear infinite; 
+            opacity: 0; 
+        }
+        @keyframes fly { 
+            0% { transform: translate(0, 0); opacity: 0; } 
+            10% { opacity: 1; } 
+            90% { opacity: 1; } 
+            100% { transform: translate(var(--mx), var(--my)); opacity: 0; } 
+        }
+        
+        /* Grass with detail */
+        .grass { 
+            position: absolute; 
+            bottom: 0; 
+            width: 100%; 
+            height: 35px; 
+            background: linear-gradient(to top, #003300, #004d00); 
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0; 
+            transform: scaleX(1.5); 
+            box-shadow: 0 -5px 20px rgba(0, 77, 0, 0.3);
+        }
+        
+        .grass::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 10px,
+                rgba(0, 100, 0, 0.3) 10px,
+                rgba(0, 100, 0, 0.3) 11px
+            );
+        }
+        
+        /* Lightning effect */
+        .lightning {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0);
+            pointer-events: none;
+            z-index: 20;
+            animation: lightning 8s ease-in-out infinite;
+        }
+        
+        @keyframes lightning {
+            0%, 94%, 96%, 100% {
+                opacity: 0;
+            }
+            95% {
+                opacity: 0.7;
+            }
+        }
+        
+        /* Mist/Fog effect */
+        .mist {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to top, 
+                rgba(200, 220, 240, 0.08) 0%,
+                rgba(200, 220, 240, 0.04) 50%,
+                transparent 100%
+            );
+            animation: mistMove 20s ease-in-out infinite;
+            z-index: 8;
+        }
+        
+        @keyframes mistMove {
+            0%, 100% {
+                opacity: 0.6;
+                transform: translateX(0);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateX(50px);
+            }
+        }
+        
+        .final-text { 
+            position: absolute; 
+            bottom: 60px; 
+            color: rgba(255, 255, 255, 0.9); 
+            font-size: 1.6rem; 
+            text-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.5),
+                0 2px 5px rgba(0, 0, 0, 0.8); 
+            text-align: center; 
+            width: 90%; 
+            z-index: 20; 
+            opacity: 0; 
+            animation: fadeInText 3s ease-out forwards 3s; 
+            font-style: italic; 
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+        @keyframes fadeInText { 
+            to { opacity: 1; } 
+        }
+        
+        .restart-container { 
+            position: absolute; 
+            top: 20px; 
+            right: 20px; 
+            z-index: 30; 
+            opacity: 0; 
+            animation: fadeInText 2s ease-out forwards 5s; 
+        }
+        
+        /* Music toggle button */
+        .music-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 30;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            animation: fadeInText 2s ease-out forwards 5s;
+            opacity: 0;
+        }
+        
+        .music-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
         }
     </style>
 </head>
 <body>
+    <div style="display: none;">
+        <!-- NHẠC NỀN - Phát ngay từ đầu -->
+        <audio id="bgMusic" loop>
+            <source src="./nhacsinhnhat.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- NHẠC HAPPY BIRTHDAY - Khi thổi nến -->
+        <audio id="candleMusic" loop>
+            <source src="./nhacsinhnhat2.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- NHẠC CHILL + MƯA - Màn cuối -->
+        <audio id="chillMusic" loop>
+            <source src="./nhaclofi.mp3" type="audio/mpeg">
+        </audio>
+        
+        <audio id="rainSound" loop>
+            <source src="./rain-sound.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
     <div id="screen1" class="screen active">
         <div class="floating-icon" style="top: 10%; left: 10%;">✨</div>
         <div class="floating-icon" style="top: 20%; right: 15%; animation-delay: 0.5s;">💖</div>
@@ -155,10 +575,10 @@
         <div class="floating-icon" style="bottom: 25%; right: 10%; animation-delay: 1.5s;">✨</div>
         
         <div class="greeting-box">
-            <h1>🎉 Chúc mừng sinh nhật 🎂<br><span style="color: #cc0033;">Ánh Ngọc</span>  </h1>
+            <h1>🎉 Chúc mừng sinh nhật 🎂<br><span style="color: #cc0033;">Ánh Ngọc</span></h1>
             <h2>24 / 01</h2>
             <p>Một điều nhỏ xinh được chuẩn bị riêng cho Ngọc ✨</p>
-            <button class="btn-cute" id="startBtn">Nhấn vào để xem bất ngờ</button>
+            <button class="btn-cute" id="startBtn">💕Bắt đầu thôi💕</button>
         </div>
     </div>
 
@@ -195,7 +615,7 @@
 
     <div id="screen3" class="screen">
         <h2 style="position: absolute; top: 10%;">✨ Giờ thì hãy thổi nến nha ✨</h2>
-        <p style="color: #ffe66d; font-size: 1.2rem; margin-top: 20px; text-align: center; position: absolute; top: 18%;"></p>
+        <p style="color: #ffe66d; font-size: 1.2rem; margin-top: 20px; text-align: center; position: absolute; top: 18%;">(Nhấn vào từng cây nến)</p>
         <div class="cake-container glow">
             <div class="candle-holder">
                 <div class="candle clickable-candle" data-candle="1"><div class="candle-wick"></div><div class="flame active"></div></div>
@@ -225,58 +645,153 @@
 
     <div id="screen6" class="screen">
         <div class="message-page msg-page-1 active">
-            <div class="page-decoration" style="top: 15%; left: 10%;">💖</div><div class="page-decoration" style="top: 25%; right: 15%;">💕</div>
+            <div class="page-decoration" style="top: 15%; left: 10%;">💖</div>
+            <div class="page-decoration" style="top: 25%; right: 15%; animation-delay: 0.5s;">💕</div>
+            <div class="page-decoration" style="bottom: 20%; left: 15%; animation-delay: 1s;">💗</div>
+            <div class="page-decoration" style="bottom: 30%; right: 10%; animation-delay: 1.5s;">💓</div>
             <div class="single-message-box" data-icon="💖">
                 <div class="single-message-text">Chúc Ánh Ngọc một tuổi mới thật nhiều niềm vui 🎂</div>
-                <button class="next-message-btn" data-next="2">Tiếp tục nè </button>
+                <button class="next-message-btn" data-next="2">Tiếp tục nè 💕</button>
             </div>
         </div>
+        
         <div class="message-page msg-page-2">
-            <div class="page-decoration" style="top: 10%; left: 12%;">🌸</div><div class="page-decoration" style="top: 20%; right: 10%;">🌺</div>
+            <div class="page-decoration" style="top: 10%; left: 12%;">🌸</div>
+            <div class="page-decoration" style="top: 20%; right: 10%; animation-delay: 0.6s;">🌺</div>
+            <div class="page-decoration" style="bottom: 15%; left: 18%; animation-delay: 1.2s;">🌼</div>
+            <div class="page-decoration" style="bottom: 25%; right: 12%; animation-delay: 0.4s;">🌷</div>
             <div class="single-message-box" data-icon="🌸">
                 <div class="single-message-text">Luôn xinh đẹp, bình an và hạnh phúc</div>
                 <button class="next-message-btn" data-next="3">Còn nữa đây 🌺</button>
             </div>
         </div>
+        
         <div class="message-page msg-page-3">
-            <div class="page-decoration" style="top: 12%; left: 15%;">⭐</div><div class="page-decoration" style="top: 18%; right: 12%;">✨</div>
+            <div class="page-decoration" style="top: 12%; left: 15%;">⭐</div>
+            <div class="page-decoration" style="top: 18%; right: 12%; animation-delay: 0.4s;">✨</div>
+            <div class="page-decoration" style="bottom: 18%; left: 10%; animation-delay: 0.8s;">🌟</div>
+            <div class="page-decoration" style="bottom: 28%; right: 18%; animation-delay: 1.2s;">💫</div>
+            <div class="page-decoration" style="top: 48%; left: 6%; animation-delay: 0.6s;">⭐</div>
             <div class="single-message-box" data-icon="✨">
                 <div class="single-message-text">Luôn yêu đời và gặp được nhiều điều may mắn</div>
                 <button class="next-message-btn" data-next="4">Chưa hết đâu ✨</button>
             </div>
         </div>
+        
         <div class="message-page msg-page-4">
-            <div class="page-decoration" style="top: 15%; left: 8%;">🎁</div><div class="page-decoration" style="top: 22%; right: 15%;">🎀</div>
+            <div class="page-decoration" style="top: 15%; left: 8%;">🎁</div>
+            <div class="page-decoration" style="top: 22%; right: 15%; animation-delay: 0.5s;">🎀</div>
+            <div class="page-decoration" style="bottom: 20%; left: 12%; animation-delay: 1s;">🎊</div>
+            <div class="page-decoration" style="bottom: 32%; right: 8%; animation-delay: 1.5s;">🎈</div>
+            <div class="page-decoration" style="top: 50%; left: 18%; animation-delay: 0.7s;">🎉</div>
             <div class="single-message-box" data-icon="🎁">
-                <div class="single-message-text">Luôn luôn thành công trên con đường mình đã chọn </div>
+                <div class="single-message-text">Luôn luôn thành công trên con đường mình đã chọn</div>
                 <button class="next-message-btn" data-next="5">Còn 1 lời chúc nữa 🎈</button>
             </div>
         </div>
+        
         <div class="message-page msg-page-5">
-            <div class="page-decoration" style="top: 10%; left: 10%;">✨</div><div class="page-decoration" style="top: 25%; right: 8%;">💫</div>
+            <div class="page-decoration" style="top: 10%; left: 10%;">✨</div>
+            <div class="page-decoration" style="top: 25%; right: 8%; animation-delay: 0.3s;">💫</div>
+            <div class="page-decoration" style="bottom: 15%; left: 15%; animation-delay: 0.6s;">⭐</div>
+            <div class="page-decoration" style="bottom: 25%; right: 12%; animation-delay: 0.9s;">🌟</div>
+            <div class="page-decoration" style="top: 45%; left: 5%; animation-delay: 0.4s;">✨</div>
+            <div class="page-decoration" style="top: 55%; right: 18%; animation-delay: 0.7s;">💫</div>
             <div class="single-message-box" data-icon="🎂">
-                <div class="single-message-text">Và mong mọi điều tốt đẹp nhất sẽ luôn đến với bà !</div>
-                <button class="next-message-btn" data-next="relax">Món quà nhỏ cuối cùng... 🌙</button>
+                <div class="single-message-text">Và mong mọi điều tốt đẹp nhất sẽ luôn đến với bà! 🥰</div>
+                <button class="next-message-btn" data-next="relax">Món quà cuối cùng... 🌙✨</button>
             </div>
         </div>
     </div>
 
     <div id="screen7" class="screen">
         <div class="moon"></div>
+        <div class="lightning"></div>
         <div id="starContainer"></div>
-        <div class="shooting-star-container"></div>
+        <div class="shooting-star-container" id="shootingStarContainer"></div>
+        <div class="rain-container" id="rainContainer"></div>
+        <div class="rain-splash" id="rainSplash"></div>
+        <div class="cloud-container" id="cloudContainer"></div>
+        <div class="mist"></div>
         <div id="fireflyContainer"></div>
         <div class="grass"></div>
         <div class="garden-container" id="gardenContainer"></div>
-       
         
+        <div class="music-toggle" id="musicToggle">🔊</div>
+        <div class="final-text d-none">
+            Một đêm yên bình dành riêng cho Ánh Ngọc<br>
+            <small style="font-size: 1.2rem; opacity: 0.8;">Chúc Ngọc luôn hạnh phúc và tràn đầy năng lượng 💖</small>
+        </div>
+        <div class="restart-container d-none">
+            <button class="btn-cute" id="restartBtn">🔄 Xem lại</button>
+        </div>
     </div>
 
     <script>
         let candlesLit = 0;
         let candlesBlown = 0;
         let currentMessagePage = 1;
+        let musicEnabled = true;
 
+        // --- AUDIO ELEMENTS ---
+        const bgMusic = document.getElementById('bgMusic');
+        const candleMusic = document.getElementById('candleMusic');
+        const chillMusic = document.getElementById('chillMusic');
+        const rainSound = document.getElementById('rainSound');
+
+        // --- MUSIC FUNCTIONS ---
+        function playMusic(audioElement, volume = 0.3) {
+            audioElement.volume = volume;
+            const playPromise = audioElement.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(e => {
+                    console.log("Cần tương tác người dùng để phát nhạc");
+                    // Retry on first user interaction
+                    document.addEventListener('click', function retryPlay() {
+                        audioElement.play();
+                        document.removeEventListener('click', retryPlay);
+                    }, { once: true });
+                });
+            }
+        }
+
+        function stopMusic(audioElement) {
+            if (audioElement) {
+                $(audioElement).animate({volume: 0}, 1000, function() {
+                    audioElement.pause();
+                    audioElement.currentTime = 0;
+                });
+            }
+        }
+
+        function fadeInMusic(audioElement, targetVolume = 0.3, duration = 2000) {
+            audioElement.volume = 0;
+            playMusic(audioElement, 0);
+            $(audioElement).animate({volume: targetVolume}, duration);
+        }
+
+        // --- AUTO PLAY MUSIC ON PAGE LOAD ---
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                playMusic(bgMusic, 0.25);
+            }, 500);
+        });
+
+        // Music toggle button (for screen 7)
+        $('#musicToggle').click(function() {
+            musicEnabled = !musicEnabled;
+            if (musicEnabled) {
+                $(this).text('🔊');
+                fadeInMusic(chillMusic, 0.25, 1000);
+                fadeInMusic(rainSound, 0.15, 1000);
+            } else {
+                $(this).text('🔇');
+                stopMusic(chillMusic);
+                stopMusic(rainSound);
+            }
+        });
+
+        // --- SCREEN TRANSITIONS ---
         $('#startBtn').click(function() {
             $('#screen1').fadeOut(800, function() {
                 $('#screen2').addClass('active').hide().fadeIn(800);
@@ -285,6 +800,9 @@
         });
 
         $('#lightCandlesBtn').click(function() {
+            stopMusic(bgMusic);
+            playMusic(candleMusic, 0.3);
+            
             $('#screen2').fadeOut(800, function() {
                 $('#screen3').addClass('active').hide().fadeIn(800);
                 lightCandlesSequence();
@@ -298,7 +816,9 @@
                 if (candlesLit < 4) {
                     $($('#screen3 .flame')[candlesLit]).addClass('active');
                     candlesLit++;
-                } else { clearInterval(interval); }
+                } else { 
+                    clearInterval(interval); 
+                }
             }, 500);
         }
 
@@ -310,16 +830,18 @@
                 $(this).append(smoke);
                 smoke.css('display', 'block');
                 setTimeout(() => smoke.remove(), 1000);
+                
                 candlesBlown++;
                 let opacity = 1 - (candlesBlown * 0.25);
                 $('#screen3').css('background', `rgba(26, 26, 46, ${opacity})`);
                 $('.cake-container').css('opacity', opacity);
+                
                 if (candlesBlown === 4) {
                     $('#screen3').css('background', '#000');
                     $('.cake-container').css('opacity', 0);
                     $('.glow').css('box-shadow', 'none');
                     $('h2, p').fadeOut(500);
-                    setTimeout(showDramaticFireworks, 1500); 
+                    setTimeout(showDramaticFireworks, 1500);
                 }
             }
         });
@@ -336,32 +858,52 @@
         function createBigCentralFirework() {
             let centerX = window.innerWidth / 2;
             let centerY = window.innerHeight / 2;
-            const colors = ['#ff0000', '#ffff00', '#ff69b4', '#00ffff'];
-             for (let j = 0; j < 80; j++) {
+            const colors = ['#ff0000', '#ffff00', '#ff69b4', '#00ffff', '#00ff00'];
+            
+            for (let j = 0; j < 80; j++) {
                 let firework = $('<div class="firework big"></div>');
                 let angle = (Math.PI * 2 * j) / 80;
                 let distance = 200 + Math.random() * 150;
                 let x = Math.cos(angle) * distance;
                 let y = Math.sin(angle) * distance;
-                firework.css({ left: centerX + 'px', top: centerY + 'px', background: colors[Math.floor(Math.random() * colors.length)], color: colors[Math.floor(Math.random() * colors.length)], '--x': x + 'px', '--y': y + 'px' });
+                
+                firework.css({
+                    left: centerX + 'px',
+                    top: centerY + 'px',
+                    background: colors[Math.floor(Math.random() * colors.length)],
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    '--x': x + 'px',
+                    '--y': y + 'px'
+                });
+                
                 $('#screen5').append(firework);
                 setTimeout(() => firework.remove(), 1500);
             }
         }
 
         function createFireworks() {
-            const colors = ['#ff6b9d', '#ffeaa7', '#a29bfe', '#fd79a8', '#fdcb6e'];
+            const colors = ['#ff6b9d', '#ffeaa7', '#a29bfe', '#fd79a8', '#fdcb6e', '#ff0000', '#00ff00', '#0000ff'];
+            
             for (let i = 0; i < 10; i++) {
                 setTimeout(() => {
                     let centerX = Math.random() * window.innerWidth;
                     let centerY = Math.random() * (window.innerHeight * 0.7);
+                    
                     for (let j = 0; j < 40; j++) {
                         let firework = $('<div class="firework"></div>');
                         let angle = (Math.PI * 2 * j) / 40;
                         let distance = 100 + Math.random() * 100;
                         let x = Math.cos(angle) * distance;
                         let y = Math.sin(angle) * distance;
-                        firework.css({ left: centerX + 'px', top: centerY + 'px', background: colors[Math.floor(Math.random() * colors.length)], '--x': x + 'px', '--y': y + 'px' });
+                        
+                        firework.css({
+                            left: centerX + 'px',
+                            top: centerY + 'px',
+                            background: colors[Math.floor(Math.random() * colors.length)],
+                            '--x': x + 'px',
+                            '--y': y + 'px'
+                        });
+                        
                         $('#screen5').append(firework);
                         setTimeout(() => firework.remove(), 1200);
                     }
@@ -382,10 +924,20 @@
             let currentPage = $(this).closest('.message-page');
             
             if (nextPage === 'relax') {
+                stopMusic(candleMusic);
+                
                 currentPage.fadeOut(500, function() {
                     $('#screen6').removeClass('active');
                     $('#screen7').addClass('active').hide().fadeIn(1500);
                     initRelaxationScreen();
+                    
+                    // Start chill music and rain sound
+                    setTimeout(() => {
+                        if (musicEnabled) {
+                            fadeInMusic(chillMusic, 0.25, 3000);
+                            fadeInMusic(rainSound, 0.15, 3000);
+                        }
+                    }, 1000);
                 });
             } else {
                 currentPage.fadeOut(500, function() {
@@ -398,10 +950,19 @@
 
         function createPageConfetti() {
             const colors = ['#ff6b9d', '#ffeaa7', '#a29bfe', '#fd79a8', '#fdcb6e', '#00b894'];
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 25; i++) {
                 setTimeout(() => {
                     let confetti = $('<div class="confetti-piece"></div>');
-                    confetti.css({ left: Math.random() * 100 + '%', top: '-10px', background: colors[Math.floor(Math.random() * colors.length)], animationDelay: (Math.random() * 2) + 's', animationDuration: (2 + Math.random() * 2) + 's', width: (5 + Math.random() * 10) + 'px', height: (5 + Math.random() * 10) + 'px', borderRadius: Math.random() > 0.5 ? '50%' : '0' });
+                    confetti.css({
+                        left: Math.random() * 100 + '%',
+                        top: '-10px',
+                        background: colors[Math.floor(Math.random() * colors.length)],
+                        animationDelay: (Math.random() * 2) + 's',
+                        animationDuration: (2 + Math.random() * 2) + 's',
+                        width: (5 + Math.random() * 10) + 'px',
+                        height: (5 + Math.random() * 10) + 'px',
+                        borderRadius: Math.random() > 0.5 ? '50%' : '0'
+                    });
                     $('#screen6').append(confetti);
                     setTimeout(() => confetti.remove(), 4000);
                 }, i * 100);
@@ -410,69 +971,218 @@
 
         function createConfetti() {
             const colors = ['#ff6b9d', '#ffeaa7', '#a29bfe', '#fd79a8', '#fdcb6e'];
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 20; i++) {
                 setTimeout(() => {
                     let confetti = $('<div class="confetti-piece"></div>');
-                    confetti.css({ left: Math.random() * 100 + '%', top: '-10px', background: colors[Math.floor(Math.random() * colors.length)], animationDelay: (Math.random() * 2) + 's', width: (8 + Math.random() * 8) + 'px', height: (8 + Math.random() * 8) + 'px' });
+                    confetti.css({
+                        left: Math.random() * 100 + '%',
+                        top: '-10px',
+                        background: colors[Math.floor(Math.random() * colors.length)],
+                        animationDelay: (Math.random() * 2) + 's',
+                        width: (8 + Math.random() * 8) + 'px',
+                        height: (8 + Math.random() * 8) + 'px'
+                    });
                     $('#screen2').append(confetti);
                     setTimeout(() => confetti.remove(), 3000);
                 }, i * 150);
             }
         }
 
+        // --- RELAXATION SCREEN (Night Garden with Rain) ---
         function initRelaxationScreen() {
+            createStars();
+            createClouds();
+            createShootingStars();
+            createRain();
+            createFireflies();
+            createGarden();
+        }
+
+        function createStars() {
             const starContainer = $('#starContainer');
-            for(let i=0; i<150; i++) {
+            for(let i = 0; i < 200; i++) {
                 let star = $('<div class="star"></div>');
-                let size = Math.random() * 2 + 1 + 'px';
-                star.css({ width: size, height: size, left: Math.random() * 100 + '%', top: Math.random() * 80 + '%', animationDuration: (Math.random() * 3 + 2) + 's', animationDelay: Math.random() * 5 + 's' });
-                starContainer.append(star);
-            }
-
-            // Tạo sao băng ngẫu nhiên bằng JS
-            const shootingStarContainer = $('.shooting-star-container');
-            setInterval(() => {
-                let star = $('<div class="shooting-star"></div>');
-                // Random vị trí xuất hiện theo chiều dọc
-                let topPos = Math.random() * 60 + '%'; 
-                // Random tốc độ và độ trễ một chút
-                let duration = 2 + Math.random() * 1 + 's'; 
-                let scale = 0.8 + Math.random() * 0.4; // Random kích thước
-
+                let size = Math.random() * 3 + 1 + 'px';
+                let isBright = Math.random() > 0.7;
+                
+                if (isBright) {
+                    star.addClass('bright');
+                    size = (Math.random() * 2 + 2) + 'px';
+                }
+                
                 star.css({
-                    'top': topPos,
-                    'left': '-300px', // Bắt đầu từ ngoài màn hình bên trái
-                    'animation-duration': duration,
-                    'transform': `scale(${scale})`
+                    width: size,
+                    height: size,
+                    left: Math.random() * 100 + '%',
+                    top: Math.random() * 70 + '%',
+                    aanimationDelay: Math.random() * 5 + 's'
                 });
-                shootingStarContainer.append(star);
-                // Xóa sao băng sau khi bay xong
-                setTimeout(() => { star.remove(); }, parseFloat(duration) * 1000 + 100);
-            }, 1200); // Xuất hiện liên tục hơn
-
-            const fireflyContainer = $('#fireflyContainer');
-            for(let i=0; i<20; i++) {
-                let fly = $('<div class="firefly"></div>');
-                let startX = Math.random() * 100 + 'vw';
-                let startY = Math.random() * 80 + 'vh';
-                let moveX = (Math.random() - 0.5) * 400 + 'px';
-                let moveY = (Math.random() - 0.5) * 400 + 'px';
-                fly.css({ left: startX, top: startY, '--mx': moveX, '--my': moveY, animationDuration: (Math.random() * 10 + 10) + 's', animationDelay: Math.random() * 5 + 's' });
-                fireflyContainer.append(fly);
-            }
-
-            const garden = $('#gardenContainer');
-            const flowerColors = ['#ff69b4', '#dda0dd', '#87ceeb', '#ffb6c1', '#f0e68c'];
-            for(let i=0; i<15; i++) {
-                let height = 50 + Math.random() * 100 + 'px';
-                let color = flowerColors[Math.floor(Math.random() * flowerColors.length)];
-                let delay = Math.random() * 2 + 's';
-                let flowerHtml = `<div style="position: relative; display: flex; flex-direction: column; align-items: center; margin-bottom: -10px;"><div class="flower-head" style="--delay: ${delay}"><div class="petal" style="--color: ${color}"></div><div class="petal" style="--color: ${color}"></div><div class="petal" style="--color: ${color}"></div><div class="petal" style="--color: ${color}"></div><div class="flower-center"></div></div><div class="flower-stem" style="--h: ${height}; animation-delay: 0s, ${delay}"></div></div>`;
-                garden.append(flowerHtml);
+                starContainer.append(star);
             }
         }
 
-        $('#restartBtn').click(function() { location.reload(); });
+        function createClouds() {
+            const container = $('#cloudContainer');
+            for(let i=0; i<6; i++) {
+                let cloud = $('<div class="cloud"></div>');
+                let width = 100 + Math.random() * 200;
+                cloud.css({
+                    width: width + 'px',
+                    height: (width * 0.4) + 'px',
+                    top: Math.random() * 40 + '%',
+                    left: (Math.random() * 100) + '%',
+                    opacity: 0.1 + Math.random() * 0.2,
+                    animationDuration: (25 + Math.random() * 20) + 's'
+                });
+                container.append(cloud);
+            }
+        }
+
+        function createShootingStars() {
+            const container = $('#shootingStarContainer');
+            // Tạo sao băng ngẫu nhiên mỗi 2-4 giây
+            setInterval(() => {
+                let star = $('<div class="shooting-star"></div>');
+                let startY = Math.random() * (window.innerHeight * 0.6); // Xuất hiện ở nửa trên
+                
+                // Cấu hình bay từ TRÁI sang PHẢI (Left -> Right)
+                star.css({
+                    left: '-150px', // Bắt đầu từ ngoài màn hình bên trái
+                    top: startY + 'px',
+                    width: (100 + Math.random() * 150) + 'px',
+                    transform: 'rotate(15deg)', // Góc nghiêng nhẹ cho đẹp
+                    opacity: 1
+                });
+
+                container.append(star);
+
+                // Bay sang phải và rớt xuống nhẹ
+                star.animate({
+                    left: '120%', // Bay vút qua bên phải màn hình
+                    top: (startY + 100) + 'px', // Hơi chệch xuống
+                    opacity: 0
+                }, 2000 + Math.random() * 1000, 'linear', function() {
+                    $(this).remove(); // Xóa sau khi bay xong
+                });
+
+            }, 2500);
+        }
+
+        function createRain() {
+            const container = $('#rainContainer');
+            const splashContainer = $('#rainSplash');
+            
+            // Mưa rơi thưa và chill (nhỏ thôi)
+            setInterval(() => {
+                let drop = $('<div class="rain-drop"></div>');
+                let left = Math.random() * 100;
+                let duration = 1000 + Math.random() * 500;
+
+                drop.css({
+                    left: left + '%',
+                    animationDuration: (duration / 1000) + 's',
+                    opacity: 0.3 + Math.random() * 0.3 // Mờ mờ ảo ảo
+                });
+
+                container.append(drop);
+
+                // Tạo hiệu ứng nước bắn khi chạm đất
+                setTimeout(() => {
+                    drop.remove();
+                    let splash = $('<div class="splash"></div>');
+                    splash.css({
+                        left: left + '%',
+                        bottom: '0px'
+                    });
+                    splashContainer.append(splash);
+                    setTimeout(() => splash.remove(), 600);
+                }, duration - 50);
+
+            }, 150); // Tốc độ tạo hạt mưa (càng lớn càng thưa)
+        }
+
+        function createFireflies() {
+            const container = $('#fireflyContainer');
+            for(let i=0; i<30; i++) {
+                let firefly = $('<div class="firefly"></div>');
+                let x = Math.random() * window.innerWidth;
+                let y = Math.random() * (window.innerHeight - 200) + 200;
+                
+                firefly.css({
+                    left: x + 'px',
+                    top: y + 'px',
+                    '--mx': (Math.random() * 200 - 100) + 'px',
+                    '--my': (Math.random() * 200 - 100) + 'px',
+                    animationDelay: Math.random() * 5 + 's',
+                    animationDuration: (8 + Math.random() * 5) + 's'
+                });
+                
+                container.append(firefly);
+            }
+        }
+
+        function createGarden() {
+            const container = $('#gardenContainer');
+            const colors = ['#FF69B4', '#FFD700', '#DA70D6', '#E6E6FA', '#FFB6C1'];
+            
+            // Trồng 15 bông hoa
+            for(let i=0; i<15; i++) {
+                let flowerGroup = $('<div class="flower-group" style="position:relative;"></div>');
+                let height = 60 + Math.random() * 80;
+                let color = colors[Math.floor(Math.random() * colors.length)];
+                let delay = Math.random() * 3 + 's';
+                
+                // Thân cây
+                let stem = $(`<div class="flower-stem" style="--h: ${height}px; height: 0; margin: 0 auto;"></div>`);
+                
+                // Đầu hoa
+                let head = $(`<div class="flower-head" style="--delay: ${delay}; --glow-color: ${color};"></div>`);
+                
+                // Cánh hoa
+                head.append(`<div class="petal" style="--color: ${color};"></div>`);
+                head.append(`<div class="petal" style="--color: ${color}; opacity: 0.8;"></div>`);
+                head.append(`<div class="petal" style="--color: ${color}; opacity: 0.9;"></div>`);
+                head.append(`<div class="petal" style="--color: ${color}; opacity: 0.8;"></div>`);
+                head.append(`<div class="flower-center"></div>`);
+                
+                flowerGroup.append(stem);
+                flowerGroup.append(head);
+                container.append(flowerGroup);
+            }
+        }
+
+       
+        $('#restartBtn').click(function() {
+
+            stopMusic(chillMusic);
+            stopMusic(rainSound);
+            
+   
+            $('#starContainer').empty();
+            $('#shootingStarContainer').empty();
+            $('#rainContainer').empty();
+            $('#gardenContainer').empty();
+            $('#fireflyContainer').empty();
+
+ 
+            candlesLit = 0;
+            candlesBlown = 0;
+            currentMessagePage = 1;
+
+            
+            $('.flame').removeClass('active').show(); 
+            $('.smoke').remove();
+            $('#screen3').css('background', '#1a1a2e');
+            $('.cake-container').css('opacity', 1).removeClass('glow');
+            $('#screen3 h2, #screen3 p').show();
+
+
+            $('#screen7').fadeOut(1000, function() {
+                $('#screen1').fadeIn(1000);
+                playMusic(bgMusic, 0.3); 
+            });
+        });
+
     </script>
 </body>
 </html>
